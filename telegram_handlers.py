@@ -60,7 +60,6 @@ async def register_email_command(update: Update, context: ContextTypes.DEFAULT_T
     except Exception as e:
         logging.error(f"Failed to register email for user {user_id}: {e}")
         await update.message.reply_text("An error occurred while registering the email. Please contact the administrator.")
-# --- END NEW ---
 
 
 async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
