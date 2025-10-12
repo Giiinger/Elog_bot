@@ -7,7 +7,7 @@ from openai import AzureOpenAI
 # .env file load
 load_dotenv()
 
-# ✅ environmental variables
+# environmental variables
 AZURE_API_KEY = os.getenv("AZURE_API_KEY")
 AZURE_API_ENDPOINT = os.getenv("AZURE_API_ENDPOINT")
 AZURE_DEPLOYMENT_NAME = os.getenv("AZURE_DEPLOYMENT_NAME")
@@ -19,7 +19,7 @@ SMTP_PORT = int(os.getenv("SMTP_PORT", "465"))      # [IMPROVEMENT]
 # COUNSELOR_EMAIL = os.getenv("COUNSELOR_EMAIL") COUNSELOR_EMAIL can be managed per user.
 
 
-# ✅ security-related envs
+# security-related envs
 MASTER_KEY_B64 = os.getenv("MASTER_KEY")
 SECRET_LINK_KEY_B64 = os.getenv("SECRET_LINK_KEY")
 BASE_URL = os.getenv("BASE_URL", "http://localhost:8080")
@@ -28,7 +28,7 @@ DELETE_AFTER_DOWNLOAD = os.getenv("DELETE_AFTER_DOWNLOAD", "true").lower() == "t
 OTP_ATTEMPT_LIMIT = int(os.getenv("OTP_ATTEMPT_LIMIT", "5"))
 SESSION_TTL_SEC = int(os.getenv("SESSION_TTL_SEC", "86400"))
 
-# ✅ sanity check (warning for missing required envs)
+# sanity check (warning for missing required envs)
 for key in ["AZURE_API_KEY","AZURE_API_ENDPOINT","AZURE_DEPLOYMENT_NAME",
             "TELEGRAM_BOT_TOKEN","SMTP_EMAIL","SMTP_PASSWORD",
             "MASTER_KEY","SECRET_LINK_KEY"]:
@@ -43,7 +43,7 @@ if not MASTER_KEY_B64 or not SECRET_LINK_KEY_B64:
 MASTER_KEY = base64.b64decode(MASTER_KEY_B64) if MASTER_KEY_B64 else b"\x00"*32
 SECRET_LINK_KEY = base64.b64decode(SECRET_LINK_KEY_B64) if SECRET_LINK_KEY_B64 else b"\x00"*32
 
-# ✅ Azure OpenAI client setup
+# Azure OpenAI client setup
 client = AzureOpenAI(
     api_key=AZURE_API_KEY,
     api_version="2024-02-01", #Changed to a valid API version (example)
@@ -52,6 +52,6 @@ client = AzureOpenAI(
 deployment = AZURE_DEPLOYMENT_NAME
 
 
-# ✅ data dir
+# data dir
 DATA_DIR = "user_data"
 os.makedirs(DATA_DIR, exist_ok=True)
