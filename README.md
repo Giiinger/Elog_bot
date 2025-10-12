@@ -7,7 +7,7 @@ This project is an AI-powered counseling Telegram chatbot based on **Acceptance 
 
   * **AI-Powered Counseling**: Provides interactive, conversational counseling based on ACT/CBT principles using OpenAI's language models.
   * **Robust Security**:
-      * **Conversation Encryption**: All conversations are encrypted using the AES-GCM algorithm before being stored on the server, ensuring that even server administrators cannot view the content.
+      * **Conversation Encryption**: All conversations are encrypted using the AES-GCM algorithm before being stored on the server, ensuring that even server administrators cannot view the content. <암호화 단계 이미지화 하기>
       * **Data Integrity**: A Hash Chain is implemented to prevent any tampering or alteration of the conversation logs.
   * **Secure Log Sharing**:
       * Users can export their conversation history from a specified period, along with an AI-generated summary, into a single ZIP file.
@@ -30,7 +30,7 @@ This project is an AI-powered counseling Telegram chatbot based on **Acceptance 
 1.  **Clone the repository**
 
     ```bash
-    git clone https://github.com/YOUR_USERNAME/YOUR_REPOSITORY.git
+    git clone https://github.com/YOUR_USERNAME/YOUR_REPOSITORY.git 내 레포로 바꾸기
     cd YOUR_REPOSITORY
     ```
 
@@ -63,7 +63,7 @@ This project is an AI-powered counseling Telegram chatbot based on **Acceptance 
     SECRET_LINK_KEY="<PASTE_YOUR_GENERATED_32-BYTE_SECRET_LINK_KEY_HERE_IN_BASE64>"
 
     # Web Server URL for secure downloads
-    BASE_URL="http://<YOUR_SERVER_IP_OR_DOMAIN>:8080"
+    BASE_URL="http://<YOUR_SERVER_IP_OR_DOMAIN>"
     ```
 
 4.  **Run the chatbot**
@@ -82,12 +82,12 @@ This project is an AI-powered counseling Telegram chatbot based on **Acceptance 
     Starts the bot and displays a welcome message with instructions.
 
   * `/register <counselor_email>`
-    Registers the professional counselor's email address where conversation logs will be sent.
+    Registers the counselor's email address where conversation logs will be sent.
 
       * **Example**: `/register my_counselor@example.com`
 
   * `/send_logs <start_date> <end_date>`
-    Exports the conversation history and summary for the specified date range, zips it, and sends a secure download link to the registered counselor's email. The user receives an OTP required for the download.
+    Exports the conversation history and summary for the specified date range, zips it, and sends a secure download link to the registered counselor's email. The user receives an OTP required for the download and should let the counselor know the password to open.
 
       * **Example**: `/send_logs 2025-01-01 2025-01-31`
 
