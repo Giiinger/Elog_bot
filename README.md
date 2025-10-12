@@ -32,7 +32,7 @@ This project is an AI-powered counseling Telegram chatbot based on **Acceptance 
 1.  **Clone the repository**
 
     ```bash
-    git clone https://github.com/YOUR_USERNAME/YOUR_REPOSITORY.git 내 레포로 바꾸기
+    git clone https://github.com/Giiinger/Elog_bot.git
     cd YOUR_REPOSITORY
     ```
 
