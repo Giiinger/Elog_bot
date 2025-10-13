@@ -1,5 +1,5 @@
 
-# Elog(Emotiona Log) Chatbot
+# Elog(Emotion Log) Chatbot
 
 This project is an AI-powered counseling Telegram chatbot based on **Acceptance and Commitment Therapy (ACT)** and **Cognitive Behavioral Therapy (CBT)**. All conversations with the user are protected with end-to-end encryption, and users can securely share their counseling records with a professional counselor whenever they choose.
 
