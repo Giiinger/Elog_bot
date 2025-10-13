@@ -7,7 +7,7 @@ from web_server import start_keep_alive
 from telegram_handlers import (
     start,
     send_logs_command,
-    revoke_export_command,
+    revoke_command,
     register_email_command,
     handle_message
 )
@@ -18,8 +18,8 @@ def run_bot():
     
     # Register handlers imported from telegram_handlers.py
     app.add_handler(CommandHandler("start", start))
-    app.add_handler(CommandHandler("send_logs", send_logs_command))
-    app.add_handler(CommandHandler("revoke_export", revoke_export_command))
+    app.add_handler(CommandHandler("send", send_logs_command))
+    app.add_handler(CommandHandler("revoke", revoke_command))
     app.add_handler(CommandHandler("register", register_email_command))
     app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_message))
     

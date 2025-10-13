@@ -6,7 +6,7 @@ from telegram.ext import ContextTypes
 
 # Local module imports
 from data_manager import save_counselor_email
-from export_handler import send_logs_via_secure_link, revoke_secure_link, _verify_token
+from export_handler import send_logs_via_secure_link, revoke_secure_link, _verify_token, find_and_revoke_by_id
 from llm_handler import get_gpt_response
 
 
@@ -14,12 +14,12 @@ async def send_logs_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     try:
         user_id = update.effective_user.id
         if len(context.args) != 2:
-            await update.message.reply_text("Usage: /send_logs YYYY-MM-DD YYYY-MM-DD")
+            await update.message.reply_text("Usage: /send YYYY-MM-DD YYYY-MM-DD")
             return
         
         start_date, end_date = context.args
         # Run blocking function in a separate thread
-        otp, result_msg = await asyncio.to_thread(
+        otp, result_msg, revoke_id = await asyncio.to_thread(
             send_logs_via_secure_link, user_id, start_date, end_date
         )
 
@@ -30,8 +30,11 @@ async def send_logs_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await update.message.reply_text(
             "The record transfer is ready.\n"
             f"Please personally deliver the OTP below to the counselor:\n\n"
-            f"OTP: `{otp}`\n\n"
-            "The counselor can download the file by opening the link received via email and entering this OTP.",
+            f"OTP: `{otp}`\n"
+            "The counselor can download the file by opening the link received via email and entering this OTP.\n"
+            "If you want to deactivate the link, Please not the followings \n"
+            f"**Revocation ID**: `{revoke_id}`\n\n"
+            f"How to Use: `/revoke {revoke_id}`",
             parse_mode="Markdown"
         )
 
@@ -60,7 +63,6 @@ async def register_email_command(update: Update, context: ContextTypes.DEFAULT_T
     except Exception as e:
         logging.error(f"Failed to register email for user {user_id}: {e}")
         await update.message.reply_text("An error occurred while registering the email. Please contact the administrator.")
-# --- END NEW ---
 
 
 async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -69,7 +71,7 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 
     if "send mail" in user_input.lower():
-        await update.message.reply_text("To send the conversation history, first make sure you've registered your counselor's email with `/register_email <email>`. Then, use the command:\n`/send_logs YYYY-MM-DD YYYY-MM-DD`")
+        await update.message.reply_text("To send the conversation history, first make sure you've registered your counselor's email with `/register_email <email>`. Then, use the command:\n`/send YYYY-MM-DD YYYY-MM-DD`")
         parse_mode="Markdown"
         return
     
@@ -77,19 +79,21 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     reply = await asyncio.to_thread(get_gpt_response, user_id, user_input)
     await update.message.reply_text(reply)
 
-async def revoke_export_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    if not context.args:
-        await update.message.reply_text("Usage: /revoke_export <signed_token>")
+async def revoke_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    user_id = update.effective_user.id
+    if not context.args or len(context.args) != 1:
+        await update.message.reply_text("Usage: /revoke <revoke ID>")
         return
-    signed = context.args[0]
-    token = _verify_token(signed)
-    if not token:
-        await update.message.reply_text("The token is invalid.")
-        return
+
+    revoke_id = context.args[0]
     
-    # Run blocking function in a separate thread
-    ok = await asyncio.to_thread(revoke_secure_link, token)
-    await update.message.reply_text("Revocation complete" if ok else "This link has already been revoked or does not exist.")
+    ok, note = await asyncio.to_thread(find_and_revoke_by_id, user_id, revoke_id)
+
+    if ok:
+        await update.message.reply_text(f"Your '{note}' link has been sucessfully deactivated.")
+    else:
+        await update.message.reply_text("Couldn't find the ID of the Link or It has been already deactivated.")
+
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text("""
@@ -98,7 +102,7 @@ Hello! I am a psychological counseling chatbot based on Acceptance and Commitmen
 Security Information:
 • Conversations are stored on the disk only as 'ciphertext', and the decryption key is kept only by user ID.
 • To send your records to a counselor, First, register your counselor's email with `/register youremail@mail.com`. 
-  Then, to send your records, use the `/send_logs` command. The counselor will receive a secure link, and you will provide them with an OTP.
+  Then, to send your records, use the `/send` command. The counselor will receive a secure link, and you will provide them with an OTP.
 
 
 Feel free to start talking. I will walk with you in the way of ACT and CBT when you need it.

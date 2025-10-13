@@ -97,5 +97,5 @@ def run_flask():
 
 def start_keep_alive():
     thread = threading.Thread(target=run_flask)
-    thread.daemon = True # [IMPROVEMENT] Terminate along with the main thread
+    thread.daemon = True # Terminate along with the main thread
     thread.start()

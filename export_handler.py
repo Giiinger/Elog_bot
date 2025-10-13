@@ -62,6 +62,8 @@ def create_secure_link_with_otp(user_id: int, file_path: str, note: str = "") ->
     signed = _sign_token(token)
     otp_plain = gen_otp(10)
     otp_hash = hash_otp(otp_plain)
+    revoke_id = f"ACT-{datetime.now().strftime('%y%m%d')}-{secrets.choice('ABCDEFGHJKLMNPQRSTUVWXYZ')}"
+
 
     reg = _load_registry()
     reg[token] = {
@@ -74,10 +76,11 @@ def create_secure_link_with_otp(user_id: int, file_path: str, note: str = "") ->
         "note": note,
         "otp_hash": otp_hash,
         "otp_attempts": 0,
-        "locked": False
+        "locked": False,
+        "revoke_id": revoke_id
     }
     _save_registry(reg)
-    return f"{BASE_URL}/secure-download?token={signed}", otp_plain
+    return f"{BASE_URL}/secure-download?token={signed}", otp_plain, revoke_id
 
 def revoke_secure_link(token: str) -> bool:
     reg = _load_registry()
@@ -91,6 +94,25 @@ def revoke_secure_link(token: str) -> bool:
         _save_registry(reg)
         return True
     return False
+
+def find_and_revoke_by_id(user_id: int, revoke_id: str) -> tuple[bool, str]:
+    """Finds and revokes a link using a user-facing ID."""
+    reg = _load_registry()
+    token_to_revoke = None
+    note = ""
+    
+    for token, meta in reg.items():
+        if int(meta.get("user_id")) == user_id and str(meta.get("revoke_id")) == revoke_id:
+            token_to_revoke = token
+            note = meta.get("note", "")
+            break
+    
+    if token_to_revoke:
+        was_revoked = revoke_secure_link(token_to_revoke)
+        return was_revoked, note
+    
+    return False, ""
+
 
 def make_plain_zip(files, zip_path):
     with ZipFile(zip_path, "w", compression=ZIP_DEFLATED) as zf:
@@ -158,10 +180,12 @@ def send_logs_via_secure_link(user_id, start_date, end_date):
     os.remove(filtered_path)
     os.remove(summary_path)
 
-    link, otp_plain = create_secure_link_with_otp(user_id, zip_path, note=f"{start_date}~{end_date}")
+    link, otp_plain, revoke_id = create_secure_link_with_otp(user_id, zip_path, note=f"{start_date}~{end_date}")
 
     counselor_email = load_counselor_email(user_id)
     if not counselor_email:
+        token = link.split("=")[-1]
+        revoke_secure_link(token)
         return None, "Counselor's email is not registered. Please register it first using:\n`/register_email your_counselor@example.com`"
 
     msg = EmailMessage()
@@ -179,4 +203,4 @@ def send_logs_via_secure_link(user_id, start_date, end_date):
         smtp.login(SMTP_EMAIL, SMTP_PASSWORD)
         smtp.send_message(msg)
 
-    return otp_plain, "Download Link has been sent to your counselor"
+    return otp_plain, "Download Link has been sent to your counselor", revoke_id
