@@ -119,6 +119,7 @@ This project is an AI-powered counseling Telegram chatbot based on **Acceptance 
     Registers the counselor's email address where conversation logs will be sent.
 
       * **Example**: `/register my_counselor@example.com`
+    <img src="./images/register.jpg" width="300">
 
   * `/send <start_date> <end_date>`
     Exports the conversation history and summary for the specified date range, zips it, and sends a secure download link to the registered counselor's email. The user receives an OTP required for the download and should let the counselor know the password to open.
