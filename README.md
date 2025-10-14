@@ -24,7 +24,7 @@ This project is an AI-powered counseling Telegram chatbot based on **Acceptance 
 
   * Python 3.8+
   * Telegram Bot Token
-    (어떻게 토큰 받는지 링크 알려주기)
+    [How to get Bot Token](https://docs.radist.online/docs/our-products/radist-web/connections/telegram-bot/instructions-for-creating-and-configuring-a-bot-in-botfather)
   * Azure OpenAI API Key and Endpoint Information
     API Key와 End point가 어떤지 알려주기 
   * A Gmail account (or other SMTP server info) for sending emails
