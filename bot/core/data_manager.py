@@ -6,8 +6,8 @@ import logging
 from typing import Dict, Any
 
 # Local module imports
-from config import DATA_DIR
-from security_utils import _encrypt_for_storage, _decrypt_from_storage, compute_chain_hash, _ensure_session_key
+from ..config import DATA_DIR
+from .security_utils import _encrypt_for_storage, _decrypt_from_storage, compute_chain_hash, _ensure_session_key
 
 
 def load_user_log(user_id):

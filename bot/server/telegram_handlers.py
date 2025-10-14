@@ -5,9 +5,9 @@ from telegram import Update
 from telegram.ext import ContextTypes
 
 # Local module imports
-from data_manager import save_counselor_email
-from export_handler import send_logs_via_secure_link, revoke_secure_link, _verify_token, find_and_revoke_by_id
-from llm_handler import get_gpt_response
+from bot.core.data_manager import save_counselor_email
+from bot.core.export_handler import send_logs_via_secure_link, revoke_secure_link, _verify_token, find_and_revoke_by_id
+from bot.core.llm_handler import get_gpt_response
 
 
 async def send_logs_command(update: Update, context: ContextTypes.DEFAULT_TYPE):

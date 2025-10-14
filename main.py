@@ -2,9 +2,9 @@ import logging
 from telegram.ext import ApplicationBuilder, CommandHandler, MessageHandler, filters
 
 # Local module imports
-from config import TELEGRAM_BOT_TOKEN
-from web_server import start_keep_alive
-from telegram_handlers import (
+from bot.config import TELEGRAM_BOT_TOKEN
+from bot.server.web_server import start_keep_alive
+from bot.server.telegram_handlers import (
     start,
     send_logs_command,
     revoke_command,

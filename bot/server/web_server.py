@@ -4,8 +4,8 @@ import threading
 from flask import Flask, request, Response, send_file
 
 # Local module imports
-from config import DELETE_AFTER_DOWNLOAD, OTP_ATTEMPT_LIMIT
-from export_handler import _verify_token, _load_registry, _save_registry, hash_otp, revoke_secure_link
+from bot.config import DELETE_AFTER_DOWNLOAD, OTP_ATTEMPT_LIMIT
+from bot.core.export_handler import _verify_token, _load_registry, _save_registry, hash_otp, revoke_secure_link
 
 web_app = Flask(__name__)
 

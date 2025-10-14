@@ -2,9 +2,9 @@ import logging
 from datetime import datetime, timezone
 
 # Local module imports
-from config import client, deployment
-from data_manager import load_recent_plain, append_message
-from security_utils import _ensure_session_key
+from ..config import client, deployment
+from .data_manager import load_recent_plain, append_message
+from .security_utils import _ensure_session_key
 
 def load_system_content(file_path):
     try:

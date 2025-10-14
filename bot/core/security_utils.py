@@ -8,7 +8,7 @@ from cryptography.hazmat.primitives.kdf.hkdf import HKDF
 from cryptography.hazmat.primitives import hashes
 
 # Local module imports
-from config import MASTER_KEY, DATA_DIR
+from ..config import MASTER_KEY, DATA_DIR
 
 
 def _ensure_session_key(user_id: int) -> bytes:

@@ -13,13 +13,13 @@ from zipfile import ZipFile, ZIP_DEFLATED
 import threading
 
 # Local module imports
-from config import (
+from ..config import (
     DATA_DIR, SECRET_LINK_KEY, BASE_URL, MAX_DOWNLOADS, 
     SMTP_EMAIL, SMTP_PASSWORD, SMTP_HOST, SMTP_PORT, client, deployment
 )
-from data_manager import load_user_log, load_counselor_email
-from security_utils import _decrypt_from_storage, _ensure_session_key
-from llm_handler import load_system_content
+from .data_manager import load_user_log, load_counselor_email
+from .security_utils import _decrypt_from_storage, _ensure_session_key
+from .llm_handler import load_system_content
 
 REGISTRY_LOCK = threading.Lock()
 EXPORT_REGISTRY = os.path.join(DATA_DIR, "exports_registry.json")
