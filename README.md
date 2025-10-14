@@ -83,30 +83,29 @@ This project is an AI-powered counseling Telegram chatbot based on **Acceptance 
 ```bash
 /Elog_bot/
 ├── .env
-├── main.py                 # <-- 프로그램 실행 시작점 (가장 바깥에 위치)
+├── main.py                  <-- 프로그램 실행 시작점 (가장 바깥에 위치)
 ├── prompt_templates/
 │   ├── ACT_Guide.txt
 │   └── summary.txt
 ├── user_data/
 │
-└── bot/                    # <-- 핵심 로직이 담길 메인 패키지
-    ├── __init__.py         # --- 이 폴더를 패키지로 만들어줍니다.
+└── bot/                     <-- 핵심 로직이 담길 메인 패키지
+    ├── __init__.py          <--- 이 폴더를 패키지로 만들어줍니다.
     │
-    ├── core/               # --- 핵심 비즈니스 로직 그룹
+    ├── core/                <--- 핵심 비즈니스 로직 그룹
     │   ├── __init__.py
     │   ├── data_manager.py
     │   ├── llm_handler.py
     │   ├── security_utils.py
     │   └── export_handler.py
     │
-    ├── handlers/           # --- 사용자 입력 및 외부 요청 처리 그룹
+    ├── server/              <--- 사용자 입력 및 외부 요청 처리 그룹
     │   ├── __init__.py
     │   ├── telegram_handlers.py
     │   └── web_server.py
     │
-    └── config.py           # --- 설정 관련 모듈
+    └── config.py             <--- 설정 관련 모듈
 ```
-
 
 -----
 
