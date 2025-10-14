@@ -16,6 +16,34 @@ This project is an AI-powered counseling Telegram chatbot based on **Acceptance 
       * A secure download link, protected by a **One-Time Password (OTP)**, is sent to the counselor's email, ensuring that only authorized individuals can access the file.
   * **Telegram Integration**: Users can access the chatbot anytime, anywhere through the familiar Telegram messaging app.
 
+### Project Structure
+
+```bash
+/Elog_bot/
+├── .env
+├── main.py                  <-- 프로그램 실행 시작점 (가장 바깥에 위치)
+├── prompt_templates/
+│   ├── ACT_Guide.txt
+│   └── summary.txt
+├── user_data/
+│
+└── bot/                     <-- 핵심 로직이 담길 메인 패키지
+    ├── __init__.py          <--- 이 폴더를 패키지로 만들어줍니다.
+    │
+    ├── core/                <--- 핵심 비즈니스 로직 그룹
+    │   ├── __init__.py
+    │   ├── data_manager.py
+    │   ├── llm_handler.py
+    │   ├── security_utils.py
+    │   └── export_handler.py
+    │
+    ├── server/              <--- 사용자 입력 및 외부 요청 처리 그룹
+    │   ├── __init__.py
+    │   ├── telegram_handlers.py
+    │   └── web_server.py
+    │
+    └── config.py             <--- 설정 관련 모듈
+```
 -----
 
 ## 🚀 Getting Started
@@ -78,34 +106,6 @@ This project is an AI-powered counseling Telegram chatbot based on **Acceptance 
 
     The chatbot will now be running on Telegram.
 
-### Project Structure
-
-```bash
-/Elog_bot/
-├── .env
-├── main.py                  <-- 프로그램 실행 시작점 (가장 바깥에 위치)
-├── prompt_templates/
-│   ├── ACT_Guide.txt
-│   └── summary.txt
-├── user_data/
-│
-└── bot/                     <-- 핵심 로직이 담길 메인 패키지
-    ├── __init__.py          <--- 이 폴더를 패키지로 만들어줍니다.
-    │
-    ├── core/                <--- 핵심 비즈니스 로직 그룹
-    │   ├── __init__.py
-    │   ├── data_manager.py
-    │   ├── llm_handler.py
-    │   ├── security_utils.py
-    │   └── export_handler.py
-    │
-    ├── server/              <--- 사용자 입력 및 외부 요청 처리 그룹
-    │   ├── __init__.py
-    │   ├── telegram_handlers.py
-    │   └── web_server.py
-    │
-    └── config.py             <--- 설정 관련 모듈
-```
 
 -----
 
