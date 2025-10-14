@@ -32,7 +32,7 @@ async def send_logs_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
             f"Please personally deliver the OTP below to the counselor:\n\n"
             f"OTP: `{otp}`\n"
             "The counselor can download the file by opening the link received via email and entering this OTP.\n"
-            "If you want to deactivate the link, Please not the followings \n"
+            "If you want to deactivate the link, copy and paste the command \n"
             f"**Revocation ID**: `{revoke_id}`\n\n"
             f"How to Use: `/revoke {revoke_id}`",
             parse_mode="Markdown"
@@ -102,8 +102,7 @@ Hello! I am a psychological counseling chatbot based on Acceptance and Commitmen
 Security Information:
 • Conversations are stored on the disk only as 'ciphertext', and the decryption key is kept only by user ID.
 • To send your records to a counselor, First, register your counselor's email with `/register youremail@mail.com`. 
-  Then, to send your records, use the `/send` command. The counselor will receive a secure link, and you will provide them with an OTP.
-
+• Then, use the `/send` command. The counselor will receive a secure link, and you will provide them with an OTP.
 
 Feel free to start talking. I will walk with you in the way of ACT and CBT when you need it.
 
