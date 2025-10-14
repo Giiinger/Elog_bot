@@ -100,5 +100,5 @@ This project is an AI-powered counseling Telegram chatbot based on **Acceptance 
   * `/revoke <revoke_id>`
     Immediately invalidates a previously generated secure download link.
 
-    * **Example**: `/revoke ACT-199980-L`
+    * **Example**: `/revoke ACT-251013-R`
     <img src="./images/revoke.jpg" width="300">
