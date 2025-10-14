@@ -84,7 +84,7 @@ This project is an AI-powered counseling Telegram chatbot based on **Acceptance 
 
   * `/start`
     Starts the bot and displays a welcome message with instructions.
-    <img src="./images/start.jpg" width="800">
+    <img src="./images/start.jpg" width="300">
 
   * `/register <counselor_email>`
     Registers the counselor's email address where conversation logs will be sent.
@@ -95,10 +95,10 @@ This project is an AI-powered counseling Telegram chatbot based on **Acceptance 
     Exports the conversation history and summary for the specified date range, zips it, and sends a secure download link to the registered counselor's email. The user receives an OTP required for the download and should let the counselor know the password to open.
 
       * **Example**: `/send 2025-01-01 2025-01-31`
-    <img src="./images/send.jpg" width="800">
+    <img src="./images/send.jpg" width="300">
 
   * `/revoke <revoke_id>`
     Immediately invalidates a previously generated secure download link.
 
     * **Example**: `/revoke ACT-199980-L`
-    <img src="./images/revoke.jpg" width="800">
+    <img src="./images/revoke.jpg" width="300">
