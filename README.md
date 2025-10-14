@@ -1,5 +1,5 @@
 
-# Elog(Emotiona Log) Chatbot
+# Elog(Emotion Log) Chatbot
 
 This project is an AI-powered counseling Telegram chatbot based on **Acceptance and Commitment Therapy (ACT)** and **Cognitive Behavioral Therapy (CBT)**. All conversations with the user are protected with end-to-end encryption, and users can securely share their counseling records with a professional counselor whenever they choose.
 
@@ -88,10 +88,12 @@ This project is an AI-powered counseling Telegram chatbot based on **Acceptance 
 
       * **Example**: `/register my_counselor@example.com`
 
-  * `/send_logs <start_date> <end_date>`
+  * `/send <start_date> <end_date>`
     Exports the conversation history and summary for the specified date range, zips it, and sends a secure download link to the registered counselor's email. The user receives an OTP required for the download and should let the counselor know the password to open.
 
-      * **Example**: `/send_logs 2025-01-01 2025-01-31`
+      * **Example**: `/send 2025-01-01 2025-01-31`
 
-  * `/revoke_export <token>`
-    Immediately invalidates a previously generated secure download link (for admin use).
+  * `/revoke <revoke_id>`
+    Immediately invalidates a previously generated secure download link.
+
+    * **Example**: `/revoke ACT-199980-L`
