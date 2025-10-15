@@ -25,8 +25,8 @@ This project is an AI-powered counseling Telegram chatbot based on **Acceptance 
 ├── .env
 ├── main.py                     <-- run the program
 ├── prompt_templates/
-│   ├── ACT_Guide.txt           <-- used for chatrun the program
-│   └── summary.txt             <-- used for summary 
+│   ├── Response_Guide.txt      <-- chat response guide
+│   └── summary.txt             <-- summary for user chat history 
 ├── user_data/                  <-- will be made when deployed
 │
 └── bot/                     
