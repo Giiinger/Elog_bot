@@ -6,3 +6,4 @@ __pycache__/
 # IDE/editor specific files
 .vscode/
 .idea/
+elog_bot/
