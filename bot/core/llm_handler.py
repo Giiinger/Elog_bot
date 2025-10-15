@@ -21,7 +21,7 @@ def get_gpt_response(user_id: int, user_input: str):
 
     history.append({"role": "user", "content": user_input, "timestamp": now})
 
-    system_content = load_system_content("prompt_templates/ACT_Guide.txt")
+    system_content = load_system_content("prompt_templates/Response_Guide.txt")
     messages = [{"role": "system", "content": system_content}] + [
         {"role": m["role"], "content": m["content"]} for m in history
     ]
