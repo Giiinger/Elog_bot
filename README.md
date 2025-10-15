@@ -3,6 +3,8 @@
 
 This project is an AI-powered counseling Telegram chatbot based on **Acceptance and Commitment Therapy (ACT)** and **Cognitive Behavioral Therapy (CBT)**. All conversations with the user are protected with end-to-end encryption, and users can securely share their counseling records with a professional counselor whenever they choose.
 
+You can find me in Telegram: search Elogchatbot or @Gin_goldbot
+
 <img src="./images/explanation.jpg" width="800">
 
 ## ✨ Key Features
@@ -21,28 +23,28 @@ This project is an AI-powered counseling Telegram chatbot based on **Acceptance 
 ```bash
 /Elog_bot/
 ├── .env
-├── main.py                  <-- 프로그램 실행 시작점 (가장 바깥에 위치)
+├── main.py                     <-- run the program
 ├── prompt_templates/
-│   ├── ACT_Guide.txt
-│   └── summary.txt
-├── user_data/
+│   ├── ACT_Guide.txt           <-- used for chatrun the program
+│   └── summary.txt             <-- used for summary 
+├── user_data/                  <-- will be made when deployed
 │
-└── bot/                     <-- 핵심 로직이 담길 메인 패키지
-    ├── __init__.py          <--- 이 폴더를 패키지로 만들어줍니다.
+└── bot/                     
+    ├── __init__.py          
     │
-    ├── core/                <--- 핵심 비즈니스 로직 그룹
+    ├── core/                   <--- internal core functions 
     │   ├── __init__.py
-    │   ├── data_manager.py
-    │   ├── llm_handler.py
-    │   ├── security_utils.py
-    │   └── export_handler.py
+    │   ├── data_manager.py     <--- data handling function 
+    │   ├── llm_handler.py      <--- make response using llm api
+    │   ├── security_utils.py   <--- encrypt and decrypt user chat history
+    │   └── export_handler.py   <--- send mail and revoke the link
     │
-    ├── server/              <--- 사용자 입력 및 외부 요청 처리 그룹
+    ├── server/              
     │   ├── __init__.py
-    │   ├── telegram_handlers.py
-    │   └── web_server.py
+    │   ├── telegram_handlers.py  <--- telegram command function
+    │   └── web_server.py         <--- open and maintain server
     │
-    └── config.py             <--- 설정 관련 모듈
+    └── config.py                 <--- set environment variables
 ```
 -----
 

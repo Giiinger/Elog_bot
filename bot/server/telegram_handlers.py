@@ -99,11 +99,12 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text("""
 Hello! I am a psychological counseling chatbot based on Acceptance and Commitment Therapy (ACT) and CBT(Cognitive Behavioral Therapy).
 
+
 Security Information:
 • Conversations are stored on the disk only as 'ciphertext', and the decryption key is kept only by user ID.
 • To send your records to a counselor, First, register your counselor's email with `/register youremail@mail.com`. 
 • Then, use the `/send` command. The counselor will receive a secure link, and you will provide them with an OTP.
 
-Feel free to start talking. I will walk with you in the way of ACT and CBT when you need it.
+Feel free to start talking. I will walk with you when you need a help.
 
 """)
