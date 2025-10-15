@@ -3,7 +3,7 @@
 
 This project is an AI-powered counseling Telegram chatbot based on **Acceptance and Commitment Therapy (ACT)** and **Cognitive Behavioral Therapy (CBT)**. All conversations with the user are protected with end-to-end encryption, and users can securely share their counseling records with a professional counselor whenever they choose.
 
-You can find me in Telegram: search Elogchatbot or @Gin_goldbot
+✅ You can find me in ✨Telegram✨ ➡️ Search **Elogchatbot** or **@Gin_goldbot**
 
 <img src="./images/explanation.jpg" width="800">
 
@@ -11,7 +11,7 @@ You can find me in Telegram: search Elogchatbot or @Gin_goldbot
 
   * **AI-Powered Counseling**: Provides interactive, conversational counseling based on ACT/CBT principles using OpenAI's language models.
   * **Robust Security**:
-      * **Conversation Encryption**: All conversations are encrypted using the AES-GCM algorithm before being stored on the server, ensuring that even server administrators cannot view the content. <암호화 단계 이미지화 하기>
+      * **Conversation Encryption**: All conversations are encrypted using the AES-GCM algorithm before being stored on the server, ensuring that even server administrators cannot view the content.
       * **Data Integrity**: A Hash Chain is implemented to prevent any tampering or alteration of the conversation logs.
   * **Secure Log Sharing**:
       * Users can export their conversation history from a specified period, along with an AI-generated summary, into a single ZIP file.
