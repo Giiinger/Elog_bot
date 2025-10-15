@@ -52,5 +52,8 @@ deployment = AZURE_DEPLOYMENT_NAME
 
 
 # data dir
-DATA_DIR = "user_data"
+
+PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+DATA_DIR = os.path.join(PROJECT_ROOT, "user_data")
 os.makedirs(DATA_DIR, exist_ok=True)
+
